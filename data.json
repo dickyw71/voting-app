@@ -2,6 +2,7 @@
     "polls": [
         {
             "title": "Frontend frameworks",
+            "author": "Will White",
             "options": [
                 {
                     "option": "React",
@@ -15,6 +16,7 @@
         },
         {
             "title": "Backend frameworks",
+            "author": "Richard Wheatley",
             "options":[
                 {
                     "option": "Express",
