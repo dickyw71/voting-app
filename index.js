@@ -13,7 +13,7 @@ const getAuthorDataClosure = (polls) => (author) =>
 const addPoll = (data) => (newPoll) => {
     const newPolls = data.polls.concat(newPoll);
     console.log(Object.assign(data, { polls: newPolls }))
-    // fs.writeFileSync("./data.json", Object.assign(data, { polls: newPolls }))
+    fs.writeFileSync("./data.json", JSON.stringify(Object.assign(data, { polls: newPolls }), null, 2), 'utf-8')
 }
 
 app.get('/', (req, res) => res.send(data))
