@@ -4,6 +4,9 @@ const fs = require('fs')
 
 const app = express()
 
+// Set the static file root
+app.use(express.static('public'))
+
 const getAuthorDataClosure = (polls) => (author) => 
     polls.filter(poll => poll.author === author )
 
