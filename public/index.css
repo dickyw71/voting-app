@@ -1,4 +1,12 @@
-.title {
+.page-header {
     margin: auto;
     text-align: center;
+}
+
+.title-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 44px;
+}
+.page-body {
+    align-content: center;
 }
