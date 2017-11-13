@@ -12,14 +12,16 @@ const getAuthorDataClosure = (polls) => (author) =>
 
 // Example of Function Currying    
 // const getAuthorPolls = getAuthorDataClosure(data.polls)
- 
+
+// Create poll data
 const addPoll = (data) => (newPoll) => {
-    const newPolls = data.polls.concat(newPoll);
+    const newPolls = data.polls.concat(newPoll)
     console.log(Object.assign(data, { polls: newPolls }))
     fs.writeFileSync("./data.json", JSON.stringify(Object.assign(data, { polls: newPolls }), null, 2), 'utf-8')
 }
 
-app.get('/', (req, res) => res.send(data))
+// Read poll data
+app.get('/polldata', (req, res) => res.send(data))
 
 addPoll(data) ({ 
     "title": "ML frameworks",
@@ -35,5 +37,17 @@ addPoll(data) ({
         }
     ]
 })
+
+// Update poll data
+
+// Delete poll data
+const deletePollWithTitle = (data) => (pollTitle) => {
+   const newPolls = data.polls.filter((poll) => poll.title !== pollTitle )
+   console.log(Object.assign(data, { polls: newPolls }))
+   fs.writeFileSync("./data.json", JSON.stringify(Object.assign(data, { polls: newPolls }), null, 2), 'utf-8')   
+}
+const deletePoll = deletePollWithTitle(data)
+
+deletePoll('ML frameworks')
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
