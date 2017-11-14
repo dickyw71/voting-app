@@ -7,22 +7,15 @@ const app = express()
 // Set the static file root
 app.use(express.static('public'))
 
-const getAuthorDataClosure = (polls) => (author) => 
-    polls.filter(poll => poll.author === author )
-
-// Example of Function Currying    
-// const getAuthorPolls = getAuthorDataClosure(data.polls)
+// Get the polls for a specific author
+const getAuthorData = (polls) => (author) =>  polls.filter(poll => poll.author === author )
+const getAuthorPolls = getAuthorData(data.polls)
 
 // Create poll data
 const addPoll = (data) => (newPoll) => {
     const newPolls = data.polls.concat(newPoll)
-    console.log(Object.assign(data, { polls: newPolls }))
     fs.writeFileSync("./data.json", JSON.stringify(Object.assign(data, { polls: newPolls }), null, 2), 'utf-8')
 }
-
-// Read poll data
-app.get('/polldata', (req, res) => res.send(data))
-
 addPoll(data) ({ 
     "title": "ML frameworks",
     "author": "Elon Musk",
@@ -37,17 +30,28 @@ addPoll(data) ({
         }
     ]
 })
+// Read poll data
+app.get('/polldata', (req, res) => res.send(data))
 
-// Update poll data
+// Update poll data - add option
+const updatePollOptions = (data) => (pollData) => {
+    const newPolls = data.polls.map((poll) => {
+        if(poll.title === pollData.title) {
+            poll.options = poll.options.concat({ "option": pollData.newOption, "votes": 0})
+        }
+        return poll
+    })
+    fs.writeFileSync("./data.json", JSON.stringify(Object.assign(data, { polls: newPolls }), null, 2), 'utf-8')    
+}
+const updatePollAddOption = updatePollOptions(data)
+updatePollAddOption({title: 'Frontend frameworks', newOption: 'Scala'})
 
 // Delete poll data
-const deletePollWithTitle = (data) => (pollTitle) => {
+const deletePollData = (data) => (pollTitle) => {
    const newPolls = data.polls.filter((poll) => poll.title !== pollTitle )
-   console.log(Object.assign(data, { polls: newPolls }))
    fs.writeFileSync("./data.json", JSON.stringify(Object.assign(data, { polls: newPolls }), null, 2), 'utf-8')   
 }
-const deletePoll = deletePollWithTitle(data)
-
+const deletePoll = deletePollData(data)
 deletePoll('ML frameworks')
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
