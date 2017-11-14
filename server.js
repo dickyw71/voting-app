@@ -30,6 +30,7 @@ addPoll(data) ({
         }
     ]
 })
+
 // Read poll data
 app.get('/polldata', (req, res) => res.send(data))
 
