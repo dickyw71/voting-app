@@ -17,19 +17,19 @@
     },
     {
       "id": 2,
-      "title": "ML frameworks",
-      "author": "Elon Musk",
+      "title": "Backend frameworks",
+      "author": "Richard Wheatley",
       "options": [
         {
-          "option": "Python",
-          "votes": 3
+          "option": "Express",
+          "vote": 56
         },
         {
-          "option": "R",
-          "votes": 1
+          "option": "Rails",
+          "vote": 30
         }
       ]
     }
   ],
-  "id": 3
+  "nextPollId": 3
 }
