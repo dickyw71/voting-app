@@ -5,3 +5,4 @@ We can see the JSON data in the browser.
 The creator can see just their polls.
     We can pass the Author name as a parameter and receive their poll data.
 We can create a poll.
+We can't add the same option to the poll more than once.

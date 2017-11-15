@@ -1,33 +1,35 @@
 {
-    "polls": [
+  "polls": [
+    {
+      "id": 1,
+      "title": "Frontend frameworks",
+      "author": "Will White",
+      "options": [
         {
-            "title": "Frontend frameworks",
-            "author": "Will White",
-            "options": [
-                {
-                    "option": "React",
-                    "votes": 3
-                },
-                {
-                    "option": "Elm",
-                    "votes": 1
-                }
-            ]
+          "option": "React",
+          "votes": 3
         },
         {
-            "title": "Backend frameworks",
-            "author": "Richard Wheatley",
-            "options":[
-                {
-                    "option": "Express",
-                    "vote": 56
-                },
-                {
-                    "option": "Rails",
-                    "vote": 30
-                }
-
-            ]   
+          "option": "Elm",
+          "votes": 1
         }
-    ]
+      ]
+    },
+    {
+      "id": 2,
+      "title": "ML frameworks",
+      "author": "Elon Musk",
+      "options": [
+        {
+          "option": "Python",
+          "votes": 3
+        },
+        {
+          "option": "R",
+          "votes": 1
+        }
+      ]
+    }
+  ],
+  "id": 3
 }
